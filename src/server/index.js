@@ -1,14 +1,19 @@
-const express = require('express');
-const app = express();
+// node deps
 const http = require('http');
-const server = http.createServer(app);
+const path = require('path');
+
+// npm deps
 const { Server } = require("socket.io");
+const express = require('express');
+
+const app = express();
+const server = http.createServer(app);
 const io = new Server(server);
 
 console.log('server says hello, world!');
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
 io.on('connection', (socket) => {
