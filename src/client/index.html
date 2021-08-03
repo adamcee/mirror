@@ -26,6 +26,12 @@
         var form = document.getElementById('form');
         var input = document.getElementById('input');
 
+
+        socket.on('server-msg', (msg) => {
+            console.log('server message: ' + msg);
+            input.value = msg;
+        });
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (input.value) {

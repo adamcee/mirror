@@ -26,6 +26,8 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
+
+    socket.emit('server-msg', "Hello, this is your server speaking!");
 });
 
 server.listen(3000, () => {
