@@ -12,22 +12,15 @@ const io = new Server(server);
 
 console.log('server says hello, world!');
 
+const SERVER_MSG='server-msg';
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
-
-    socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
-
-    socket.emit('server-msg', "Hello, this is your server speaking!");
+    console.log('client connected');
+    socket.emit(SERVER_MSG, "Hello, this is your server speaking!");
 });
 
 server.listen(3000, () => {
